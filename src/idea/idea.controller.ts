@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Logger, Param, Post, Put } from '@nestjs/common';
+import { IdeaDTO } from './idea.dto';
 import { IdeaService } from './idea.service';
 
 @Controller('idea')
@@ -10,27 +11,28 @@ export class IdeaController {
 
   @Get()
   showAllIdeas() {
-
+    return this.ideaService.showAll();
   }
 
-  @Post
-  createDiffieHellman() {
-
+  @Post()
+  createIdea(@Body() data: IdeaDTO) {
+    Logger.log(data, "Body");
+    return this.ideaService.create(data);
   }
 
   @Get(':id')
-  readIdea() {
-
+  readIdea(@Param('id') id: string) {
+    return this.ideaService.read(id);
   }
 
   @Put(':id')
-  updateIdea() {
-
+  updateIdea(@Param('id') id: string, @Body() data: Partial<IdeaDTO>) {
+    return this.ideaService.update(id, data);
   }
 
   @Delete(':id')
-  destroyIdea() {
-
+  destroyIdea(@Param('id') id: string) {
+    return this.ideaService.destroy(id);
   }
 
 }
