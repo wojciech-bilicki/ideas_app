@@ -3,14 +3,14 @@ import { AuthGuard } from 'src/shared/auth.guard';
 import { ValidationPipe } from 'src/shared/validation.pipe';
 import { UserDTO } from './user.dto';
 import { UserService } from './user.service';
+import { User } from './user.decorator';
 
 @Controller()
 export class UserController {
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   @Get('api/user')
-  @UseGuards(new AuthGuard())
   showAllUsers() {
     return this.userService.showAll();
   }
