@@ -1,4 +1,4 @@
-import { UserRO } from 'src/user/user.ro';
+import { UserRO } from '../user/user.ro';
 
 export class IdeaRO {
   id?: string;
