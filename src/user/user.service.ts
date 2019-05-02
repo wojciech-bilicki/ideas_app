@@ -7,16 +7,15 @@ import { UserRO } from './user.ro';
 
 @Injectable()
 export class UserService {
-
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
-  ) {
-
-  }
+  ) {}
 
   async showAll(): Promise<UserRO[]> {
-    const users = await this.userRepository.find({ relations: ['ideas', 'bookmarks'] });
+    const users = await this.userRepository.find({
+      relations: ['ideas', 'bookmarks'],
+    });
     return users.map(user => user.toResponseObject(false));
   }
 
@@ -24,7 +23,10 @@ export class UserService {
     const { username, password } = data;
     const user = await this.userRepository.findOne({ where: { username } });
     if (!user || !(await user.comparePassword(password))) {
-      throw new HttpException('Invalid username/password', HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        'Invalid username/password',
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     return user.toResponseObject();
@@ -39,6 +41,13 @@ export class UserService {
     user = await this.userRepository.create(data);
     await this.userRepository.save(user);
     return user.toResponseObject();
+  }
 
+  async read(username: string) {
+    const user = await this.userRepository.findOne({
+      where: { username },
+      relations: ['ideas', 'bookmarks'],
+    });
+    return user.toResponseObject(false);
   }
 }
