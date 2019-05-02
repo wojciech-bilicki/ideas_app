@@ -40,7 +40,7 @@ export class UserService {
     }
     user = await this.userRepository.create(data);
     await this.userRepository.save(user);
-    return user.toResponseObject();
+    return user.toResponseObject(false);
   }
 
   async read(username: string) {

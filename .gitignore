@@ -92,7 +92,6 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -128,4 +127,9 @@ typings/
 .history
 
 # End of https://www.gitignore.io/api/node,macos,visualstudiocode
+<<<<<<< HEAD
 /dist
+=======
+/dist
+/pgdata
+>>>>>>> 069fc2852b2fabc6f1a85efb38c6edd759d03265

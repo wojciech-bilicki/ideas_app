@@ -10,9 +10,9 @@ import {
   UseGuards,
   UsePipes,
 } from '@nestjs/common';
-import { AuthGuard } from 'src/shared/auth.guard';
-import { ValidationPipe } from 'src/shared/validation.pipe';
-import { User } from 'src/user/user.decorator';
+import { AuthGuard } from '../shared/auth.guard';
+import { ValidationPipe } from '../shared/validation.pipe';
+import { User } from '../user/user.decorator';
 import { IdeaDTO } from './idea.dto';
 import { IdeaService } from './idea.service';
 

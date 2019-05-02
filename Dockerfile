@@ -1,12 +1,21 @@
-FROM node:10.15.0-alpine
-expose 3000 9229
-
-WORKDIR /home/app
-COPY package.json /home/app
-COPY package-lock.json /home/app 
-
-RUN npm ci
-COPY . /home/app
-
+# stage 1 building the code
+FROM node as builder
+WORKDIR /usr/app
+COPY package*.json ./
+RUN npm install
+COPY . .
 RUN npm run build
-CMD ./scripts/start.sh
+
+#stage 2
+FROM node
+WORKDIR /usr/app
+COPY package*.json ./
+RUN npm install --production
+
+COPY --from=builder /usr/app/dist  ./dist
+
+COPY ormconfig.docker.json ./ormconfig.json
+COPY .env .
+
+EXPOSE 8080
+CMD node dist/src/main.js
