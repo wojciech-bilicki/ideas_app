@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3"
 services: 
   db: 
     image: postgres
@@ -11,7 +11,7 @@ services:
     ports: 
       - '5432:5432'
   web:
-    image: multistage
+    image: ideas_api
     command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; node dist/src/main.js'
     depends_on: 
       - db
