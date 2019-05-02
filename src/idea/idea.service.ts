@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Votes } from 'src/shared/votes.enum';
-import { UserEntity } from 'src/user/user.entity';
 import { Repository } from 'typeorm';
+import { Votes } from '../shared/votes.enum';
+import { UserEntity } from '../user/user.entity';
 import { IdeaDTO } from './idea.dto';
 import { IdeaEntity } from './idea.entity';
 import { IdeaRO } from './idea.ro';
