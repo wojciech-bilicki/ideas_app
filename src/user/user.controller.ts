@@ -11,9 +11,9 @@ import {
   ApiOkResponse,
   ApiResponse,
 } from '@nestjs/swagger';
-import { User } from 'dist/user/user.decorator';
-import { AuthGuard } from 'src/shared/auth.guard';
-import { ValidationPipe } from 'src/shared/validation.pipe';
+import { AuthGuard } from '../shared/auth.guard';
+import { ValidationPipe } from '../shared/validation.pipe';
+import { User } from './user.decorator';
 import { UserDTO } from './user.dto';
 import { UserService } from './user.service';
 

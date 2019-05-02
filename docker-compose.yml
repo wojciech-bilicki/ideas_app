@@ -1,37 +1,19 @@
-<<<<<<< HEAD
-# docker-compose.yml
 version: '3'
 services:
-  app:
-    build: .
-    depends_on:
-      - postgres
-    ports:
-      - '3000:3000'
-      - '9229:9229'
-
-  postgres:
-    image: postgres:11.2-alpine
-    environment:
-      POSTGRES_PASSWORD: postgres
-=======
-version: "3.7"
-services: 
-  db: 
+  db:
     image: postgres
-    environment: 
+    environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: ideas
     volumes:
       - ./pgdata:/var/lib/postgresql/data
-    ports: 
+    ports:
       - '5432:5432'
   web:
     image: multistage
     command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; node dist/src/main.js'
-    depends_on: 
+    depends_on:
       - db
     ports:
-      - "4000:4000"
->>>>>>> 069fc2852b2fabc6f1a85efb38c6edd759d03265
+      - '4000:4000'
