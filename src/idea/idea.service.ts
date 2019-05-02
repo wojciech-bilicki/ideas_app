@@ -133,7 +133,7 @@ export class IdeaService {
     const user = await this.userRepository.findOne({ where: { id: userId } });
 
     await this.vote(idea, user, Votes.DOWN);
-    return user;
+    return this.toResponseObject(idea);
   }
 
   async bookmark(id: string, userId: string) {
