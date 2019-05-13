@@ -9,9 +9,9 @@ const PORT = Number(process.env.PORT) || 8080;
 async function bootstrap() {
   try {
     const app = await NestFactory.create(AppModule);
+    app.enableCors();
     Logger.log(PORT);
     await app.listen(PORT);
-    Logger.log(process.env);
     Logger.log(`Server running on ${PORT}`, 'Bootstrap');
   } catch (e) {
     Logger.log(e);
